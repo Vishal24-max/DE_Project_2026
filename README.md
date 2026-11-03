@@ -22,10 +22,11 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | | | |
-| Member 2 | | | |
-| Member 3 | | | |
-| Member 4 | | | |
+| Group Lead | 
+Poorvansh Tonk | 2501010661 |  poorvanshtonk |
+| Member 2 | Abhishek Gupta | 2501010017| aganabhishek-bit |
+| Member 3 | Aditya Gupta | 2501010033| adityagupta0120 |
+| Member 4 | Vishal Pant| 2501010511| Vishal24-max |
 
 **Team No.:** ____ · **Section:** ____ · **Repository URL:** ____
 
