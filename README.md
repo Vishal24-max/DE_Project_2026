@@ -22,8 +22,7 @@
 
 | Role | Name | Enrollment No. | GitHub Username |
 |------|------|----------------|-----------------|
-| Group Lead | 
-Poorvansh Tonk | 2501010661 |  poorvanshtonk |
+| Group Lead | Poorvansh Tonk | 2501010661 |  poorvanshtonk |
 | Member 2 | Abhishek Gupta | 2501010017| aganabhishek-bit |
 | Member 3 | Aditya Gupta | 2501010033| adityagupta0120 |
 | Member 4 | Vishal Pant| 2501010511| Vishal24-max |
