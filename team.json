@@ -1,0 +1,27 @@
+{
+  "team_number": "T0116",
+  "group_lead": {
+    "name": "Poorvansh Tonk",
+    "enrollment_no": "2501010661",
+    "github": "poorvanshtonk"
+  },
+  "members": [
+    {
+      "name": "Abhishek Gupta",
+      "enrollment_no": "2501010017",
+      "github": "aganabhishek-bit"
+    },
+    {
+      "name": "Aditya Gupta",
+      "enrollment_no": "2501010033",
+      "github": "adityagupta0120"
+    },
+    {
+      "name": "Vishal Pant",
+      "enrollment_no": "2501010511",
+      "github": "Vishal24-max"
+    }
+  ],
+  "postgres_version": "PostgreSQL 18.0",
+  "laptop_used_for_benchmarks": "MacBook Pro M4, 16 GB RAM"
+}
