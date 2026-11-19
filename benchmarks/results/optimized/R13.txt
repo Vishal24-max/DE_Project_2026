@@ -1,0 +1,75 @@
+=== R13 run 1 ===
+Merge Anti Join  (cost=0.87..6125.04 rows=11505 width=16) (actual time=0.260..10.102 rows=6513.00 loops=1)
+  Merge Cond: (m.member_id = v.viewer_id)
+  Buffers: shared hit=969
+  ->  Index Scan using members_pkey on members m  (cost=0.29..1707.30 rows=40000 width=16) (actual time=0.003..2.099 rows=40000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=741
+  ->  Index Only Scan using profile_views_viewer_idx on profile_views v  (cost=0.29..3295.44 rows=199996 width=4) (actual time=0.019..3.767 rows=149823.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=228
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.389 ms
+Execution Time: 10.232 ms
+=== R13 run 2 ===
+Merge Anti Join  (cost=0.87..6125.04 rows=11505 width=16) (actual time=0.286..10.273 rows=6513.00 loops=1)
+  Merge Cond: (m.member_id = v.viewer_id)
+  Buffers: shared hit=969
+  ->  Index Scan using members_pkey on members m  (cost=0.29..1707.30 rows=40000 width=16) (actual time=0.003..2.144 rows=40000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=741
+  ->  Index Only Scan using profile_views_viewer_idx on profile_views v  (cost=0.29..3295.44 rows=199996 width=4) (actual time=0.019..3.802 rows=149823.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=228
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.439 ms
+Execution Time: 10.402 ms
+=== R13 run 3 ===
+Merge Anti Join  (cost=0.87..6125.04 rows=11505 width=16) (actual time=0.262..10.039 rows=6513.00 loops=1)
+  Merge Cond: (m.member_id = v.viewer_id)
+  Buffers: shared hit=969
+  ->  Index Scan using members_pkey on members m  (cost=0.29..1707.30 rows=40000 width=16) (actual time=0.003..2.073 rows=40000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=741
+  ->  Index Only Scan using profile_views_viewer_idx on profile_views v  (cost=0.29..3295.44 rows=199996 width=4) (actual time=0.019..3.687 rows=149823.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=228
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.382 ms
+Execution Time: 10.167 ms
+=== R13 run 4 ===
+Merge Anti Join  (cost=0.87..6125.04 rows=11505 width=16) (actual time=0.261..10.039 rows=6513.00 loops=1)
+  Merge Cond: (m.member_id = v.viewer_id)
+  Buffers: shared hit=969
+  ->  Index Scan using members_pkey on members m  (cost=0.29..1707.30 rows=40000 width=16) (actual time=0.003..2.095 rows=40000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=741
+  ->  Index Only Scan using profile_views_viewer_idx on profile_views v  (cost=0.29..3295.44 rows=199996 width=4) (actual time=0.019..3.748 rows=149823.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=228
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.380 ms
+Execution Time: 10.165 ms
+=== R13 run 5 ===
+Merge Anti Join  (cost=0.87..6125.04 rows=11505 width=16) (actual time=0.260..9.907 rows=6513.00 loops=1)
+  Merge Cond: (m.member_id = v.viewer_id)
+  Buffers: shared hit=969
+  ->  Index Scan using members_pkey on members m  (cost=0.29..1707.30 rows=40000 width=16) (actual time=0.003..2.039 rows=40000.00 loops=1)
+        Index Searches: 1
+        Buffers: shared hit=741
+  ->  Index Only Scan using profile_views_viewer_idx on profile_views v  (cost=0.29..3295.44 rows=199996 width=4) (actual time=0.018..3.683 rows=149823.00 loops=1)
+        Heap Fetches: 0
+        Index Searches: 1
+        Buffers: shared hit=228
+Planning:
+  Buffers: shared hit=273
+Planning Time: 0.350 ms
+Execution Time: 10.032 ms

@@ -1,0 +1,140 @@
+=== W05 run 1 ===
+Update on applications a  (cost=4.64..89.19 rows=0 width=0) (actual time=2.806..2.807 rows=0.00 loops=1)
+  Buffers: shared hit=2932 dirtied=329
+  ->  Nested Loop  (cost=4.64..89.19 rows=8 width=58) (actual time=0.028..0.621 rows=119.00 loops=1)
+        Buffers: shared hit=534
+        ->  Nested Loop  (cost=4.35..83.29 rows=9 width=16) (actual time=0.020..0.281 rows=138.00 loops=1)
+              Buffers: shared hit=141
+              ->  Seq Scan on companies c  (cost=0.00..51.00 rows=1 width=10) (actual time=0.004..0.060 rows=1.00 loops=1)
+                    Filter: (company_name = 'TCS'::text)
+                    Rows Removed by Filter: 1999
+                    Buffers: shared hit=26
+              ->  Bitmap Heap Scan on jobs j  (cost=4.35..32.21 rows=8 width=14) (actual time=0.015..0.214 rows=138.00 loops=1)
+                    Recheck Cond: (c.company_id = company_id)
+                    Heap Blocks: exact=113
+                    Buffers: shared hit=115
+                    ->  Bitmap Index Scan on jobs_company_status_idx  (cost=0.00..4.35 rows=8 width=0) (actual time=0.005..0.005 rows=148.00 loops=1)
+                          Index Cond: (company_id = c.company_id)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+        ->  Index Scan using applications_unreviewed_job_date_idx on applications a  (cost=0.29..0.65 rows=1 width=10) (actual time=0.002..0.002 rows=0.86 loops=138)
+              Index Cond: ((job_id = j.job_id) AND (applied_at < ('2026-07-01 00:00:00+05:30'::timestamp with time zone - '60 days'::interval)))
+              Filter: (status = 'APPLIED'::text)
+              Index Searches: 138
+              Buffers: shared hit=393
+Planning:
+  Buffers: shared hit=454
+Planning Time: 0.679 ms
+Execution Time: 2.852 ms
+=== W05 run 2 ===
+Update on applications a  (cost=4.64..89.19 rows=0 width=0) (actual time=1.560..1.561 rows=0.00 loops=1)
+  Buffers: shared hit=2943 dirtied=2
+  ->  Nested Loop  (cost=4.64..89.19 rows=8 width=58) (actual time=0.022..0.514 rows=119.00 loops=1)
+        Buffers: shared hit=534
+        ->  Nested Loop  (cost=4.35..83.29 rows=9 width=16) (actual time=0.014..0.163 rows=138.00 loops=1)
+              Buffers: shared hit=141
+              ->  Seq Scan on companies c  (cost=0.00..51.00 rows=1 width=10) (actual time=0.003..0.058 rows=1.00 loops=1)
+                    Filter: (company_name = 'TCS'::text)
+                    Rows Removed by Filter: 1999
+                    Buffers: shared hit=26
+              ->  Bitmap Heap Scan on jobs j  (cost=4.35..32.21 rows=8 width=14) (actual time=0.011..0.098 rows=138.00 loops=1)
+                    Recheck Cond: (c.company_id = company_id)
+                    Heap Blocks: exact=113
+                    Buffers: shared hit=115
+                    ->  Bitmap Index Scan on jobs_company_status_idx  (cost=0.00..4.35 rows=8 width=0) (actual time=0.004..0.004 rows=148.00 loops=1)
+                          Index Cond: (company_id = c.company_id)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+        ->  Index Scan using applications_unreviewed_job_date_idx on applications a  (cost=0.29..0.65 rows=1 width=10) (actual time=0.002..0.002 rows=0.86 loops=138)
+              Index Cond: ((job_id = j.job_id) AND (applied_at < ('2026-07-01 00:00:00+05:30'::timestamp with time zone - '60 days'::interval)))
+              Filter: (status = 'APPLIED'::text)
+              Index Searches: 138
+              Buffers: shared hit=393
+Planning:
+  Buffers: shared hit=454
+Planning Time: 0.664 ms
+Execution Time: 1.604 ms
+=== W05 run 3 ===
+Update on applications a  (cost=4.64..89.19 rows=0 width=0) (actual time=1.545..1.546 rows=0.00 loops=1)
+  Buffers: shared hit=2951 dirtied=2
+  ->  Nested Loop  (cost=4.64..89.19 rows=8 width=58) (actual time=0.023..0.509 rows=119.00 loops=1)
+        Buffers: shared hit=534
+        ->  Nested Loop  (cost=4.35..83.29 rows=9 width=16) (actual time=0.014..0.158 rows=138.00 loops=1)
+              Buffers: shared hit=141
+              ->  Seq Scan on companies c  (cost=0.00..51.00 rows=1 width=10) (actual time=0.003..0.058 rows=1.00 loops=1)
+                    Filter: (company_name = 'TCS'::text)
+                    Rows Removed by Filter: 1999
+                    Buffers: shared hit=26
+              ->  Bitmap Heap Scan on jobs j  (cost=4.35..32.21 rows=8 width=14) (actual time=0.011..0.095 rows=138.00 loops=1)
+                    Recheck Cond: (c.company_id = company_id)
+                    Heap Blocks: exact=113
+                    Buffers: shared hit=115
+                    ->  Bitmap Index Scan on jobs_company_status_idx  (cost=0.00..4.35 rows=8 width=0) (actual time=0.004..0.004 rows=148.00 loops=1)
+                          Index Cond: (company_id = c.company_id)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+        ->  Index Scan using applications_unreviewed_job_date_idx on applications a  (cost=0.29..0.65 rows=1 width=10) (actual time=0.002..0.002 rows=0.86 loops=138)
+              Index Cond: ((job_id = j.job_id) AND (applied_at < ('2026-07-01 00:00:00+05:30'::timestamp with time zone - '60 days'::interval)))
+              Filter: (status = 'APPLIED'::text)
+              Index Searches: 138
+              Buffers: shared hit=393
+Planning:
+  Buffers: shared hit=454
+Planning Time: 0.657 ms
+Execution Time: 1.603 ms
+=== W05 run 4 ===
+Update on applications a  (cost=4.64..89.19 rows=0 width=0) (actual time=1.676..1.677 rows=0.00 loops=1)
+  Buffers: shared hit=2969 dirtied=2
+  ->  Nested Loop  (cost=4.64..89.19 rows=8 width=58) (actual time=0.024..0.560 rows=119.00 loops=1)
+        Buffers: shared hit=534
+        ->  Nested Loop  (cost=4.35..83.29 rows=9 width=16) (actual time=0.015..0.183 rows=138.00 loops=1)
+              Buffers: shared hit=141
+              ->  Seq Scan on companies c  (cost=0.00..51.00 rows=1 width=10) (actual time=0.004..0.072 rows=1.00 loops=1)
+                    Filter: (company_name = 'TCS'::text)
+                    Rows Removed by Filter: 1999
+                    Buffers: shared hit=26
+              ->  Bitmap Heap Scan on jobs j  (cost=4.35..32.21 rows=8 width=14) (actual time=0.011..0.104 rows=138.00 loops=1)
+                    Recheck Cond: (c.company_id = company_id)
+                    Heap Blocks: exact=113
+                    Buffers: shared hit=115
+                    ->  Bitmap Index Scan on jobs_company_status_idx  (cost=0.00..4.35 rows=8 width=0) (actual time=0.004..0.004 rows=148.00 loops=1)
+                          Index Cond: (company_id = c.company_id)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+        ->  Index Scan using applications_unreviewed_job_date_idx on applications a  (cost=0.29..0.65 rows=1 width=10) (actual time=0.002..0.003 rows=0.86 loops=138)
+              Index Cond: ((job_id = j.job_id) AND (applied_at < ('2026-07-01 00:00:00+05:30'::timestamp with time zone - '60 days'::interval)))
+              Filter: (status = 'APPLIED'::text)
+              Index Searches: 138
+              Buffers: shared hit=393
+Planning:
+  Buffers: shared hit=454
+Planning Time: 0.686 ms
+Execution Time: 1.723 ms
+=== W05 run 5 ===
+Update on applications a  (cost=4.64..89.19 rows=0 width=0) (actual time=1.565..1.566 rows=0.00 loops=1)
+  Buffers: shared hit=2980 dirtied=2
+  ->  Nested Loop  (cost=4.64..89.19 rows=8 width=58) (actual time=0.022..0.517 rows=119.00 loops=1)
+        Buffers: shared hit=534
+        ->  Nested Loop  (cost=4.35..83.29 rows=9 width=16) (actual time=0.014..0.162 rows=138.00 loops=1)
+              Buffers: shared hit=141
+              ->  Seq Scan on companies c  (cost=0.00..51.00 rows=1 width=10) (actual time=0.003..0.058 rows=1.00 loops=1)
+                    Filter: (company_name = 'TCS'::text)
+                    Rows Removed by Filter: 1999
+                    Buffers: shared hit=26
+              ->  Bitmap Heap Scan on jobs j  (cost=4.35..32.21 rows=8 width=14) (actual time=0.011..0.099 rows=138.00 loops=1)
+                    Recheck Cond: (c.company_id = company_id)
+                    Heap Blocks: exact=113
+                    Buffers: shared hit=115
+                    ->  Bitmap Index Scan on jobs_company_status_idx  (cost=0.00..4.35 rows=8 width=0) (actual time=0.004..0.004 rows=148.00 loops=1)
+                          Index Cond: (company_id = c.company_id)
+                          Index Searches: 1
+                          Buffers: shared hit=2
+        ->  Index Scan using applications_unreviewed_job_date_idx on applications a  (cost=0.29..0.65 rows=1 width=10) (actual time=0.002..0.002 rows=0.86 loops=138)
+              Index Cond: ((job_id = j.job_id) AND (applied_at < ('2026-07-01 00:00:00+05:30'::timestamp with time zone - '60 days'::interval)))
+              Filter: (status = 'APPLIED'::text)
+              Index Searches: 138
+              Buffers: shared hit=393
+Planning:
+  Buffers: shared hit=454
+Planning Time: 0.639 ms
+Execution Time: 1.608 ms

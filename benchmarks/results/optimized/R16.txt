@@ -1,0 +1,135 @@
+=== R16 run 1 ===
+Sort  (cost=440.20..440.60 rows=160 width=121) (actual time=1.107..1.111 rows=176.00 loops=1)
+  Sort Key: j.title, (round(avg(j.max_salary_lpa), 1)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 36kB
+  Buffers: shared hit=129
+  ->  HashAggregate  (cost=431.14..434.34 rows=160 width=121) (actual time=0.996..1.040 rows=176.00 loops=1)
+        Group Key: j.title, COALESCE(ct.city_name, 'Remote'::text)
+        Batches: 1  Memory Usage: 184kB
+        Buffers: shared hit=123
+        ->  Hash Left Join  (cost=1.51..394.12 rows=2962 width=61) (actual time=0.017..0.600 rows=2929.00 loops=1)
+              Hash Cond: (j.city_id = ct.city_id)
+              Buffers: shared hit=123
+              ->  Index Scan using jobs_posted_idx on jobs j  (cost=0.29..382.31 rows=2962 width=33) (actual time=0.009..0.401 rows=2929.00 loops=1)
+                    Index Cond: (posted_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Filter: (min_salary_lpa IS NOT NULL)
+                    Rows Removed by Filter: 2043
+                    Index Searches: 1
+                    Buffers: shared hit=122
+              ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.005..0.005 rows=10.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities ct  (cost=0.00..1.10 rows=10 width=11) (actual time=0.002..0.002 rows=10.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=357
+Planning Time: 0.428 ms
+Execution Time: 1.147 ms
+=== R16 run 2 ===
+Sort  (cost=440.20..440.60 rows=160 width=121) (actual time=1.198..1.202 rows=176.00 loops=1)
+  Sort Key: j.title, (round(avg(j.max_salary_lpa), 1)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 36kB
+  Buffers: shared hit=129
+  ->  HashAggregate  (cost=431.14..434.34 rows=160 width=121) (actual time=1.073..1.130 rows=176.00 loops=1)
+        Group Key: j.title, COALESCE(ct.city_name, 'Remote'::text)
+        Batches: 1  Memory Usage: 184kB
+        Buffers: shared hit=123
+        ->  Hash Left Join  (cost=1.51..394.12 rows=2962 width=61) (actual time=0.015..0.637 rows=2929.00 loops=1)
+              Hash Cond: (j.city_id = ct.city_id)
+              Buffers: shared hit=123
+              ->  Index Scan using jobs_posted_idx on jobs j  (cost=0.29..382.31 rows=2962 width=33) (actual time=0.008..0.427 rows=2929.00 loops=1)
+                    Index Cond: (posted_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Filter: (min_salary_lpa IS NOT NULL)
+                    Rows Removed by Filter: 2043
+                    Index Searches: 1
+                    Buffers: shared hit=122
+              ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.004..0.004 rows=10.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities ct  (cost=0.00..1.10 rows=10 width=11) (actual time=0.001..0.002 rows=10.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=357
+Planning Time: 0.412 ms
+Execution Time: 1.237 ms
+=== R16 run 3 ===
+Sort  (cost=440.20..440.60 rows=160 width=121) (actual time=1.123..1.126 rows=176.00 loops=1)
+  Sort Key: j.title, (round(avg(j.max_salary_lpa), 1)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 36kB
+  Buffers: shared hit=129
+  ->  HashAggregate  (cost=431.14..434.34 rows=160 width=121) (actual time=1.014..1.060 rows=176.00 loops=1)
+        Group Key: j.title, COALESCE(ct.city_name, 'Remote'::text)
+        Batches: 1  Memory Usage: 184kB
+        Buffers: shared hit=123
+        ->  Hash Left Join  (cost=1.51..394.12 rows=2962 width=61) (actual time=0.015..0.612 rows=2929.00 loops=1)
+              Hash Cond: (j.city_id = ct.city_id)
+              Buffers: shared hit=123
+              ->  Index Scan using jobs_posted_idx on jobs j  (cost=0.29..382.31 rows=2962 width=33) (actual time=0.007..0.412 rows=2929.00 loops=1)
+                    Index Cond: (posted_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Filter: (min_salary_lpa IS NOT NULL)
+                    Rows Removed by Filter: 2043
+                    Index Searches: 1
+                    Buffers: shared hit=122
+              ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.004..0.005 rows=10.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities ct  (cost=0.00..1.10 rows=10 width=11) (actual time=0.002..0.002 rows=10.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=357
+Planning Time: 0.377 ms
+Execution Time: 1.160 ms
+=== R16 run 4 ===
+Sort  (cost=440.20..440.60 rows=160 width=121) (actual time=1.154..1.157 rows=176.00 loops=1)
+  Sort Key: j.title, (round(avg(j.max_salary_lpa), 1)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 36kB
+  Buffers: shared hit=129
+  ->  HashAggregate  (cost=431.14..434.34 rows=160 width=121) (actual time=1.049..1.092 rows=176.00 loops=1)
+        Group Key: j.title, COALESCE(ct.city_name, 'Remote'::text)
+        Batches: 1  Memory Usage: 184kB
+        Buffers: shared hit=123
+        ->  Hash Left Join  (cost=1.51..394.12 rows=2962 width=61) (actual time=0.014..0.630 rows=2929.00 loops=1)
+              Hash Cond: (j.city_id = ct.city_id)
+              Buffers: shared hit=123
+              ->  Index Scan using jobs_posted_idx on jobs j  (cost=0.29..382.31 rows=2962 width=33) (actual time=0.007..0.418 rows=2929.00 loops=1)
+                    Index Cond: (posted_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Filter: (min_salary_lpa IS NOT NULL)
+                    Rows Removed by Filter: 2043
+                    Index Searches: 1
+                    Buffers: shared hit=122
+              ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.004..0.004 rows=10.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities ct  (cost=0.00..1.10 rows=10 width=11) (actual time=0.001..0.002 rows=10.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=357
+Planning Time: 0.371 ms
+Execution Time: 1.189 ms
+=== R16 run 5 ===
+Sort  (cost=440.20..440.60 rows=160 width=121) (actual time=1.150..1.155 rows=176.00 loops=1)
+  Sort Key: j.title, (round(avg(j.max_salary_lpa), 1)) DESC NULLS LAST
+  Sort Method: quicksort  Memory: 36kB
+  Buffers: shared hit=129
+  ->  HashAggregate  (cost=431.14..434.34 rows=160 width=121) (actual time=1.014..1.070 rows=176.00 loops=1)
+        Group Key: j.title, COALESCE(ct.city_name, 'Remote'::text)
+        Batches: 1  Memory Usage: 184kB
+        Buffers: shared hit=123
+        ->  Hash Left Join  (cost=1.51..394.12 rows=2962 width=61) (actual time=0.017..0.616 rows=2929.00 loops=1)
+              Hash Cond: (j.city_id = ct.city_id)
+              Buffers: shared hit=123
+              ->  Index Scan using jobs_posted_idx on jobs j  (cost=0.29..382.31 rows=2962 width=33) (actual time=0.008..0.398 rows=2929.00 loops=1)
+                    Index Cond: (posted_at >= '2026-01-01 00:00:00+05:30'::timestamp with time zone)
+                    Filter: (min_salary_lpa IS NOT NULL)
+                    Rows Removed by Filter: 2043
+                    Index Searches: 1
+                    Buffers: shared hit=122
+              ->  Hash  (cost=1.10..1.10 rows=10 width=11) (actual time=0.005..0.005 rows=10.00 loops=1)
+                    Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                    Buffers: shared hit=1
+                    ->  Seq Scan on cities ct  (cost=0.00..1.10 rows=10 width=11) (actual time=0.002..0.002 rows=10.00 loops=1)
+                          Buffers: shared hit=1
+Planning:
+  Buffers: shared hit=357
+Planning Time: 0.410 ms
+Execution Time: 1.193 ms

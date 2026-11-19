@@ -1,0 +1,100 @@
+=== R10 run 1 ===
+Sort  (cost=16.62..16.62 rows=1 width=84) (actual time=0.040..0.040 rows=2.00 loops=1)
+  Sort Key: i.sent_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=13
+  ->  Nested Loop  (cost=0.57..16.61 rows=1 width=84) (actual time=0.029..0.033 rows=2.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Only Scan using invitations_pending_recipient_idx on invitations i  (cost=0.28..8.30 rows=1 width=72) (actual time=0.021..0.022 rows=2.00 loops=1)
+              Index Cond: (recipient_id = 1023)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using members_pkey on members m  (cost=0.29..8.31 rows=1 width=16) (actual time=0.005..0.005 rows=1.00 loops=2)
+              Index Cond: (member_id = i.sender_id)
+              Index Searches: 2
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=311
+Planning Time: 0.410 ms
+Execution Time: 0.060 ms
+=== R10 run 2 ===
+Sort  (cost=16.62..16.62 rows=1 width=84) (actual time=0.037..0.037 rows=2.00 loops=1)
+  Sort Key: i.sent_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=13
+  ->  Nested Loop  (cost=0.57..16.61 rows=1 width=84) (actual time=0.027..0.031 rows=2.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Only Scan using invitations_pending_recipient_idx on invitations i  (cost=0.28..8.30 rows=1 width=72) (actual time=0.020..0.021 rows=2.00 loops=1)
+              Index Cond: (recipient_id = 1023)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using members_pkey on members m  (cost=0.29..8.31 rows=1 width=16) (actual time=0.004..0.004 rows=1.00 loops=2)
+              Index Cond: (member_id = i.sender_id)
+              Index Searches: 2
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=311
+Planning Time: 0.384 ms
+Execution Time: 0.054 ms
+=== R10 run 3 ===
+Sort  (cost=16.62..16.62 rows=1 width=84) (actual time=0.038..0.038 rows=2.00 loops=1)
+  Sort Key: i.sent_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=13
+  ->  Nested Loop  (cost=0.57..16.61 rows=1 width=84) (actual time=0.028..0.032 rows=2.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Only Scan using invitations_pending_recipient_idx on invitations i  (cost=0.28..8.30 rows=1 width=72) (actual time=0.021..0.021 rows=2.00 loops=1)
+              Index Cond: (recipient_id = 1023)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using members_pkey on members m  (cost=0.29..8.31 rows=1 width=16) (actual time=0.005..0.005 rows=1.00 loops=2)
+              Index Cond: (member_id = i.sender_id)
+              Index Searches: 2
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=311
+Planning Time: 0.383 ms
+Execution Time: 0.056 ms
+=== R10 run 4 ===
+Sort  (cost=16.62..16.62 rows=1 width=84) (actual time=0.038..0.038 rows=2.00 loops=1)
+  Sort Key: i.sent_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=13
+  ->  Nested Loop  (cost=0.57..16.61 rows=1 width=84) (actual time=0.029..0.032 rows=2.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Only Scan using invitations_pending_recipient_idx on invitations i  (cost=0.28..8.30 rows=1 width=72) (actual time=0.020..0.020 rows=2.00 loops=1)
+              Index Cond: (recipient_id = 1023)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using members_pkey on members m  (cost=0.29..8.31 rows=1 width=16) (actual time=0.004..0.004 rows=1.00 loops=2)
+              Index Cond: (member_id = i.sender_id)
+              Index Searches: 2
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=311
+Planning Time: 0.389 ms
+Execution Time: 0.055 ms
+=== R10 run 5 ===
+Sort  (cost=16.62..16.62 rows=1 width=84) (actual time=0.037..0.037 rows=2.00 loops=1)
+  Sort Key: i.sent_at DESC
+  Sort Method: quicksort  Memory: 25kB
+  Buffers: shared hit=13
+  ->  Nested Loop  (cost=0.57..16.61 rows=1 width=84) (actual time=0.027..0.030 rows=2.00 loops=1)
+        Buffers: shared hit=10
+        ->  Index Only Scan using invitations_pending_recipient_idx on invitations i  (cost=0.28..8.30 rows=1 width=72) (actual time=0.020..0.020 rows=2.00 loops=1)
+              Index Cond: (recipient_id = 1023)
+              Heap Fetches: 1
+              Index Searches: 1
+              Buffers: shared hit=4
+        ->  Index Scan using members_pkey on members m  (cost=0.29..8.31 rows=1 width=16) (actual time=0.005..0.005 rows=1.00 loops=2)
+              Index Cond: (member_id = i.sender_id)
+              Index Searches: 2
+              Buffers: shared hit=6
+Planning:
+  Buffers: shared hit=311
+Planning Time: 0.385 ms
+Execution Time: 0.054 ms

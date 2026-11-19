@@ -1,0 +1,325 @@
+=== R05 run 1 ===
+Limit  (cost=205.45..205.50 rows=20 width=12) (actual time=0.176..0.178 rows=20.00 loops=1)
+  Buffers: shared hit=99
+  CTE my_conn
+    ->  Append  (cost=0.42..17.18 rows=15 width=4) (actual time=0.030..0.039 rows=14.00 loops=1)
+          Buffers: shared hit=7
+          ->  Index Only Scan using connections_pkey on connections  (cost=0.42..8.56 rows=8 width=4) (actual time=0.030..0.031 rows=14.00 loops=1)
+                Index Cond: (member_a = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=4
+          ->  Index Only Scan using connections_member_b_idx on connections connections_1  (cost=0.42..8.54 rows=7 width=4) (actual time=0.008..0.008 rows=0.00 loops=1)
+                Index Cond: (member_b = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=3
+  ->  Sort  (cost=188.27..188.77 rows=200 width=12) (actual time=0.175..0.176 rows=20.00 loops=1)
+        Sort Key: (count(*)) DESC, "*SELECT* 1".suggestion
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=99
+        ->  HashAggregate  (cost=180.95..182.95 rows=200 width=12) (actual time=0.154..0.160 rows=127.00 loops=1)
+              Group Key: "*SELECT* 1".suggestion
+              Batches: 1  Memory Usage: 32kB
+              Buffers: shared hit=93
+              ->  Hash Anti Join  (cost=0.91..179.87 rows=216 width=4) (actual time=0.054..0.144 rows=127.00 loops=1)
+                    Hash Cond: ("*SELECT* 1".suggestion = mc.f)
+                    Buffers: shared hit=93
+                    ->  Append  (cost=0.42..176.59 rows=234 width=4) (actual time=0.039..0.123 rows=127.00 loops=1)
+                          Buffers: shared hit=90
+                          ->  Subquery Scan on "*SELECT* 1"  (cost=0.42..86.45 rows=130 width=4) (actual time=0.039..0.082 rows=65.00 loops=1)
+                                Buffers: shared hit=47
+                                ->  Nested Loop  (cost=0.42..85.15 rows=130 width=8) (actual time=0.039..0.079 rows=65.00 loops=1)
+                                      Buffers: shared hit=47
+                                      ->  CTE Scan on my_conn mc_1  (cost=0.00..0.30 rows=15 width=4) (actual time=0.031..0.032 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                            Buffers: shared hit=4
+                                      ->  Index Only Scan using connections_pkey on connections c  (cost=0.42..5.57 rows=9 width=8) (actual time=0.003..0.003 rows=4.64 loops=14)
+                                            Index Cond: (member_a = mc_1.f)
+                                            Filter: (member_b <> 1023)
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                          ->  Subquery Scan on "*SELECT* 2"  (cost=0.42..88.97 rows=104 width=4) (actual time=0.006..0.037 rows=62.00 loops=1)
+                                Buffers: shared hit=43
+                                ->  Nested Loop  (cost=0.42..87.93 rows=104 width=8) (actual time=0.006..0.034 rows=62.00 loops=1)
+                                      Buffers: shared hit=43
+                                      ->  CTE Scan on my_conn mc_2  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.000 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                      ->  Index Only Scan using connections_member_b_idx on connections c_1  (cost=0.42..5.77 rows=7 width=8) (actual time=0.002..0.002 rows=4.43 loops=14)
+                                            Index Cond: (member_b = mc_2.f)
+                                            Filter: (member_a <> 1023)
+                                            Rows Removed by Filter: 1
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                    ->  Hash  (cost=0.30..0.30 rows=15 width=4) (actual time=0.012..0.012 rows=14.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  CTE Scan on my_conn mc  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.010 rows=14.00 loops=1)
+                                Storage: Memory  Maximum Storage: 17kB
+                                Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=133
+Planning Time: 0.274 ms
+Execution Time: 0.219 ms
+=== R05 run 2 ===
+Limit  (cost=205.45..205.50 rows=20 width=12) (actual time=0.144..0.146 rows=20.00 loops=1)
+  Buffers: shared hit=99
+  CTE my_conn
+    ->  Append  (cost=0.42..17.18 rows=15 width=4) (actual time=0.024..0.031 rows=14.00 loops=1)
+          Buffers: shared hit=7
+          ->  Index Only Scan using connections_pkey on connections  (cost=0.42..8.56 rows=8 width=4) (actual time=0.024..0.025 rows=14.00 loops=1)
+                Index Cond: (member_a = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=4
+          ->  Index Only Scan using connections_member_b_idx on connections connections_1  (cost=0.42..8.54 rows=7 width=4) (actual time=0.006..0.006 rows=0.00 loops=1)
+                Index Cond: (member_b = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=3
+  ->  Sort  (cost=188.27..188.77 rows=200 width=12) (actual time=0.144..0.144 rows=20.00 loops=1)
+        Sort Key: (count(*)) DESC, "*SELECT* 1".suggestion
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=99
+        ->  HashAggregate  (cost=180.95..182.95 rows=200 width=12) (actual time=0.126..0.131 rows=127.00 loops=1)
+              Group Key: "*SELECT* 1".suggestion
+              Batches: 1  Memory Usage: 32kB
+              Buffers: shared hit=93
+              ->  Hash Anti Join  (cost=0.91..179.87 rows=216 width=4) (actual time=0.044..0.118 rows=127.00 loops=1)
+                    Hash Cond: ("*SELECT* 1".suggestion = mc.f)
+                    Buffers: shared hit=93
+                    ->  Append  (cost=0.42..176.59 rows=234 width=4) (actual time=0.032..0.100 rows=127.00 loops=1)
+                          Buffers: shared hit=90
+                          ->  Subquery Scan on "*SELECT* 1"  (cost=0.42..86.45 rows=130 width=4) (actual time=0.032..0.064 rows=65.00 loops=1)
+                                Buffers: shared hit=47
+                                ->  Nested Loop  (cost=0.42..85.15 rows=130 width=8) (actual time=0.031..0.062 rows=65.00 loops=1)
+                                      Buffers: shared hit=47
+                                      ->  CTE Scan on my_conn mc_1  (cost=0.00..0.30 rows=15 width=4) (actual time=0.025..0.025 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                            Buffers: shared hit=4
+                                      ->  Index Only Scan using connections_pkey on connections c  (cost=0.42..5.57 rows=9 width=8) (actual time=0.002..0.002 rows=4.64 loops=14)
+                                            Index Cond: (member_a = mc_1.f)
+                                            Filter: (member_b <> 1023)
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                          ->  Subquery Scan on "*SELECT* 2"  (cost=0.42..88.97 rows=104 width=4) (actual time=0.005..0.031 rows=62.00 loops=1)
+                                Buffers: shared hit=43
+                                ->  Nested Loop  (cost=0.42..87.93 rows=104 width=8) (actual time=0.005..0.030 rows=62.00 loops=1)
+                                      Buffers: shared hit=43
+                                      ->  CTE Scan on my_conn mc_2  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.000 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                      ->  Index Only Scan using connections_member_b_idx on connections c_1  (cost=0.42..5.77 rows=7 width=8) (actual time=0.002..0.002 rows=4.43 loops=14)
+                                            Index Cond: (member_b = mc_2.f)
+                                            Filter: (member_a <> 1023)
+                                            Rows Removed by Filter: 1
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                    ->  Hash  (cost=0.30..0.30 rows=15 width=4) (actual time=0.010..0.010 rows=14.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  CTE Scan on my_conn mc  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.008 rows=14.00 loops=1)
+                                Storage: Memory  Maximum Storage: 17kB
+                                Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=133
+Planning Time: 0.272 ms
+Execution Time: 0.183 ms
+=== R05 run 3 ===
+Limit  (cost=205.45..205.50 rows=20 width=12) (actual time=0.148..0.149 rows=20.00 loops=1)
+  Buffers: shared hit=99
+  CTE my_conn
+    ->  Append  (cost=0.42..17.18 rows=15 width=4) (actual time=0.027..0.034 rows=14.00 loops=1)
+          Buffers: shared hit=7
+          ->  Index Only Scan using connections_pkey on connections  (cost=0.42..8.56 rows=8 width=4) (actual time=0.027..0.027 rows=14.00 loops=1)
+                Index Cond: (member_a = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=4
+          ->  Index Only Scan using connections_member_b_idx on connections connections_1  (cost=0.42..8.54 rows=7 width=4) (actual time=0.006..0.006 rows=0.00 loops=1)
+                Index Cond: (member_b = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=3
+  ->  Sort  (cost=188.27..188.77 rows=200 width=12) (actual time=0.147..0.148 rows=20.00 loops=1)
+        Sort Key: (count(*)) DESC, "*SELECT* 1".suggestion
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=99
+        ->  HashAggregate  (cost=180.95..182.95 rows=200 width=12) (actual time=0.129..0.135 rows=127.00 loops=1)
+              Group Key: "*SELECT* 1".suggestion
+              Batches: 1  Memory Usage: 32kB
+              Buffers: shared hit=93
+              ->  Hash Anti Join  (cost=0.91..179.87 rows=216 width=4) (actual time=0.047..0.121 rows=127.00 loops=1)
+                    Hash Cond: ("*SELECT* 1".suggestion = mc.f)
+                    Buffers: shared hit=93
+                    ->  Append  (cost=0.42..176.59 rows=234 width=4) (actual time=0.035..0.103 rows=127.00 loops=1)
+                          Buffers: shared hit=90
+                          ->  Subquery Scan on "*SELECT* 1"  (cost=0.42..86.45 rows=130 width=4) (actual time=0.034..0.068 rows=65.00 loops=1)
+                                Buffers: shared hit=47
+                                ->  Nested Loop  (cost=0.42..85.15 rows=130 width=8) (actual time=0.034..0.066 rows=65.00 loops=1)
+                                      Buffers: shared hit=47
+                                      ->  CTE Scan on my_conn mc_1  (cost=0.00..0.30 rows=15 width=4) (actual time=0.028..0.028 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                            Buffers: shared hit=4
+                                      ->  Index Only Scan using connections_pkey on connections c  (cost=0.42..5.57 rows=9 width=8) (actual time=0.002..0.002 rows=4.64 loops=14)
+                                            Index Cond: (member_a = mc_1.f)
+                                            Filter: (member_b <> 1023)
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                          ->  Subquery Scan on "*SELECT* 2"  (cost=0.42..88.97 rows=104 width=4) (actual time=0.006..0.031 rows=62.00 loops=1)
+                                Buffers: shared hit=43
+                                ->  Nested Loop  (cost=0.42..87.93 rows=104 width=8) (actual time=0.006..0.030 rows=62.00 loops=1)
+                                      Buffers: shared hit=43
+                                      ->  CTE Scan on my_conn mc_2  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.000 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                      ->  Index Only Scan using connections_member_b_idx on connections c_1  (cost=0.42..5.77 rows=7 width=8) (actual time=0.002..0.002 rows=4.43 loops=14)
+                                            Index Cond: (member_b = mc_2.f)
+                                            Filter: (member_a <> 1023)
+                                            Rows Removed by Filter: 1
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                    ->  Hash  (cost=0.30..0.30 rows=15 width=4) (actual time=0.010..0.010 rows=14.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  CTE Scan on my_conn mc  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.008 rows=14.00 loops=1)
+                                Storage: Memory  Maximum Storage: 17kB
+                                Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=133
+Planning Time: 0.259 ms
+Execution Time: 0.183 ms
+=== R05 run 4 ===
+Limit  (cost=205.45..205.50 rows=20 width=12) (actual time=0.174..0.176 rows=20.00 loops=1)
+  Buffers: shared hit=99
+  CTE my_conn
+    ->  Append  (cost=0.42..17.18 rows=15 width=4) (actual time=0.027..0.035 rows=14.00 loops=1)
+          Buffers: shared hit=7
+          ->  Index Only Scan using connections_pkey on connections  (cost=0.42..8.56 rows=8 width=4) (actual time=0.027..0.028 rows=14.00 loops=1)
+                Index Cond: (member_a = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=4
+          ->  Index Only Scan using connections_member_b_idx on connections connections_1  (cost=0.42..8.54 rows=7 width=4) (actual time=0.006..0.006 rows=0.00 loops=1)
+                Index Cond: (member_b = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=3
+  ->  Sort  (cost=188.27..188.77 rows=200 width=12) (actual time=0.173..0.175 rows=20.00 loops=1)
+        Sort Key: (count(*)) DESC, "*SELECT* 1".suggestion
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=99
+        ->  HashAggregate  (cost=180.95..182.95 rows=200 width=12) (actual time=0.153..0.160 rows=127.00 loops=1)
+              Group Key: "*SELECT* 1".suggestion
+              Batches: 1  Memory Usage: 32kB
+              Buffers: shared hit=93
+              ->  Hash Anti Join  (cost=0.91..179.87 rows=216 width=4) (actual time=0.048..0.139 rows=127.00 loops=1)
+                    Hash Cond: ("*SELECT* 1".suggestion = mc.f)
+                    Buffers: shared hit=93
+                    ->  Append  (cost=0.42..176.59 rows=234 width=4) (actual time=0.035..0.119 rows=127.00 loops=1)
+                          Buffers: shared hit=90
+                          ->  Subquery Scan on "*SELECT* 1"  (cost=0.42..86.45 rows=130 width=4) (actual time=0.035..0.080 rows=65.00 loops=1)
+                                Buffers: shared hit=47
+                                ->  Nested Loop  (cost=0.42..85.15 rows=130 width=8) (actual time=0.035..0.078 rows=65.00 loops=1)
+                                      Buffers: shared hit=47
+                                      ->  CTE Scan on my_conn mc_1  (cost=0.00..0.30 rows=15 width=4) (actual time=0.028..0.030 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                            Buffers: shared hit=4
+                                      ->  Index Only Scan using connections_pkey on connections c  (cost=0.42..5.57 rows=9 width=8) (actual time=0.003..0.003 rows=4.64 loops=14)
+                                            Index Cond: (member_a = mc_1.f)
+                                            Filter: (member_b <> 1023)
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                          ->  Subquery Scan on "*SELECT* 2"  (cost=0.42..88.97 rows=104 width=4) (actual time=0.006..0.034 rows=62.00 loops=1)
+                                Buffers: shared hit=43
+                                ->  Nested Loop  (cost=0.42..87.93 rows=104 width=8) (actual time=0.006..0.032 rows=62.00 loops=1)
+                                      Buffers: shared hit=43
+                                      ->  CTE Scan on my_conn mc_2  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.001 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                      ->  Index Only Scan using connections_member_b_idx on connections c_1  (cost=0.42..5.77 rows=7 width=8) (actual time=0.002..0.002 rows=4.43 loops=14)
+                                            Index Cond: (member_b = mc_2.f)
+                                            Filter: (member_a <> 1023)
+                                            Rows Removed by Filter: 1
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                    ->  Hash  (cost=0.30..0.30 rows=15 width=4) (actual time=0.010..0.010 rows=14.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  CTE Scan on my_conn mc  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.008 rows=14.00 loops=1)
+                                Storage: Memory  Maximum Storage: 17kB
+                                Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=133
+Planning Time: 0.257 ms
+Execution Time: 0.212 ms
+=== R05 run 5 ===
+Limit  (cost=205.45..205.50 rows=20 width=12) (actual time=0.157..0.159 rows=20.00 loops=1)
+  Buffers: shared hit=99
+  CTE my_conn
+    ->  Append  (cost=0.42..17.18 rows=15 width=4) (actual time=0.024..0.032 rows=14.00 loops=1)
+          Buffers: shared hit=7
+          ->  Index Only Scan using connections_pkey on connections  (cost=0.42..8.56 rows=8 width=4) (actual time=0.024..0.025 rows=14.00 loops=1)
+                Index Cond: (member_a = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=4
+          ->  Index Only Scan using connections_member_b_idx on connections connections_1  (cost=0.42..8.54 rows=7 width=4) (actual time=0.006..0.006 rows=0.00 loops=1)
+                Index Cond: (member_b = 1023)
+                Heap Fetches: 0
+                Index Searches: 1
+                Buffers: shared hit=3
+  ->  Sort  (cost=188.27..188.77 rows=200 width=12) (actual time=0.157..0.158 rows=20.00 loops=1)
+        Sort Key: (count(*)) DESC, "*SELECT* 1".suggestion
+        Sort Method: top-N heapsort  Memory: 26kB
+        Buffers: shared hit=99
+        ->  HashAggregate  (cost=180.95..182.95 rows=200 width=12) (actual time=0.139..0.145 rows=127.00 loops=1)
+              Group Key: "*SELECT* 1".suggestion
+              Batches: 1  Memory Usage: 32kB
+              Buffers: shared hit=93
+              ->  Hash Anti Join  (cost=0.91..179.87 rows=216 width=4) (actual time=0.055..0.131 rows=127.00 loops=1)
+                    Hash Cond: ("*SELECT* 1".suggestion = mc.f)
+                    Buffers: shared hit=93
+                    ->  Append  (cost=0.42..176.59 rows=234 width=4) (actual time=0.032..0.103 rows=127.00 loops=1)
+                          Buffers: shared hit=90
+                          ->  Subquery Scan on "*SELECT* 1"  (cost=0.42..86.45 rows=130 width=4) (actual time=0.032..0.068 rows=65.00 loops=1)
+                                Buffers: shared hit=47
+                                ->  Nested Loop  (cost=0.42..85.15 rows=130 width=8) (actual time=0.032..0.066 rows=65.00 loops=1)
+                                      Buffers: shared hit=47
+                                      ->  CTE Scan on my_conn mc_1  (cost=0.00..0.30 rows=15 width=4) (actual time=0.025..0.025 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                            Buffers: shared hit=4
+                                      ->  Index Only Scan using connections_pkey on connections c  (cost=0.42..5.57 rows=9 width=8) (actual time=0.002..0.003 rows=4.64 loops=14)
+                                            Index Cond: (member_a = mc_1.f)
+                                            Filter: (member_b <> 1023)
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                          ->  Subquery Scan on "*SELECT* 2"  (cost=0.42..88.97 rows=104 width=4) (actual time=0.005..0.031 rows=62.00 loops=1)
+                                Buffers: shared hit=43
+                                ->  Nested Loop  (cost=0.42..87.93 rows=104 width=8) (actual time=0.005..0.029 rows=62.00 loops=1)
+                                      Buffers: shared hit=43
+                                      ->  CTE Scan on my_conn mc_2  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.001 rows=14.00 loops=1)
+                                            Storage: Memory  Maximum Storage: 17kB
+                                      ->  Index Only Scan using connections_member_b_idx on connections c_1  (cost=0.42..5.77 rows=7 width=8) (actual time=0.002..0.002 rows=4.43 loops=14)
+                                            Index Cond: (member_b = mc_2.f)
+                                            Filter: (member_a <> 1023)
+                                            Rows Removed by Filter: 1
+                                            Heap Fetches: 0
+                                            Index Searches: 14
+                                            Buffers: shared hit=43
+                    ->  Hash  (cost=0.30..0.30 rows=15 width=4) (actual time=0.010..0.010 rows=14.00 loops=1)
+                          Buckets: 1024  Batches: 1  Memory Usage: 9kB
+                          Buffers: shared hit=3
+                          ->  CTE Scan on my_conn mc  (cost=0.00..0.30 rows=15 width=4) (actual time=0.000..0.008 rows=14.00 loops=1)
+                                Storage: Memory  Maximum Storage: 17kB
+                                Buffers: shared hit=3
+Planning:
+  Buffers: shared hit=133
+Planning Time: 0.273 ms
+Execution Time: 0.200 ms

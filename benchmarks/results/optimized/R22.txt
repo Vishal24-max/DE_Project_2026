@@ -1,0 +1,55 @@
+=== R22 run 1 ===
+Limit  (cost=4046.10..4047.11 rows=25 width=28) (actual time=6.189..6.190 rows=25.00 loops=1)
+  Buffers: shared hit=1165 dirtied=74
+  ->  Index Only Scan using applications_applied_desc_idx on applications  (cost=0.42..6068.29 rows=149984 width=28) (actual time=0.027..4.616 rows=100025.00 loops=1)
+        Heap Fetches: 9066
+        Index Searches: 1
+        Buffers: shared hit=1165 dirtied=74
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.262 ms
+Execution Time: 6.200 ms
+=== R22 run 2 ===
+Limit  (cost=4046.10..4047.11 rows=25 width=28) (actual time=5.734..5.735 rows=25.00 loops=1)
+  Buffers: shared hit=686
+  ->  Index Only Scan using applications_applied_desc_idx on applications  (cost=0.42..6068.29 rows=149984 width=28) (actual time=0.025..4.153 rows=100025.00 loops=1)
+        Heap Fetches: 8666
+        Index Searches: 1
+        Buffers: shared hit=686
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.264 ms
+Execution Time: 5.745 ms
+=== R22 run 3 ===
+Limit  (cost=4046.10..4047.11 rows=25 width=28) (actual time=5.740..5.741 rows=25.00 loops=1)
+  Buffers: shared hit=686
+  ->  Index Only Scan using applications_applied_desc_idx on applications  (cost=0.42..6068.29 rows=149984 width=28) (actual time=0.025..4.160 rows=100025.00 loops=1)
+        Heap Fetches: 8666
+        Index Searches: 1
+        Buffers: shared hit=686
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.260 ms
+Execution Time: 5.751 ms
+=== R22 run 4 ===
+Limit  (cost=4046.10..4047.11 rows=25 width=28) (actual time=5.733..5.735 rows=25.00 loops=1)
+  Buffers: shared hit=686
+  ->  Index Only Scan using applications_applied_desc_idx on applications  (cost=0.42..6068.29 rows=149984 width=28) (actual time=0.026..4.162 rows=100025.00 loops=1)
+        Heap Fetches: 8666
+        Index Searches: 1
+        Buffers: shared hit=686
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.275 ms
+Execution Time: 5.745 ms
+=== R22 run 5 ===
+Limit  (cost=4046.10..4047.11 rows=25 width=28) (actual time=5.853..5.855 rows=25.00 loops=1)
+  Buffers: shared hit=686
+  ->  Index Only Scan using applications_applied_desc_idx on applications  (cost=0.42..6068.29 rows=149984 width=28) (actual time=0.025..4.265 rows=100025.00 loops=1)
+        Heap Fetches: 8666
+        Index Searches: 1
+        Buffers: shared hit=686
+Planning:
+  Buffers: shared hit=195
+Planning Time: 0.295 ms
+Execution Time: 5.864 ms
